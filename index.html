@@ -1,0 +1,165 @@
+<!doctype html>
+<html class="no-js dark" lang="">
+
+
+<head>
+  <meta charset="utf-8">
+  <title>Morning Harwood</title>
+  <meta content="" name="description">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+
+  <meta content="" property="og:title">
+  <meta content="" property="og:type">
+  <meta content="" property="og:url">
+  <meta content="" property="og:image">
+
+  <!--  <link rel="manifest" href="site.webmanifest">-->
+  <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+  <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+  <link href="icon.png" rel="apple-touch-icon">
+  <link href="css/styles.css" rel="stylesheet">
+
+  <meta content="#fafafa" name="theme-color">
+</head>
+
+<body>
+<main class="hp-grid">
+  <div class="hp-grid-info">
+    <header>
+      <div class="hp-grid-info-headline">
+        <h1 class="hp-grid-info-headline-h1">Good <br/>Morning <br/>Harwood</h1>
+        <mh-date-ticker><span slot="year">2023</span></mh-date-ticker>
+        <div class="hp-grid-info-hr"></div>
+
+      </div>
+      <mh-social>
+        <ul>
+          <li>
+            <a href="">
+              <img alt="Linkedin social icon" src="./img/linkedin.svg"/>
+              <span>LinkedIn</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <img alt="X formally Twitter social icon" src="./img/x.svg"/>
+              <span>Twitter</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <img alt="Facebook social icon" src="./img/facebook.svg"/>
+              <span>Facebook</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <img alt="Gmail social icon" src="./img/gmail.svg"/>
+              <span>Gmail</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <img alt="Instagram social icon" src="./img/instagram.svg"/>
+              <span>Instagram</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <img alt="Discord social icon" src="./img/discord.svg"/>
+              <span>Discord</span>
+            </a>
+          </li>
+        </ul>
+      </mh-social>
+    </header>
+  </div>
+  <div class="hp-grid-right">
+    <div class="hp-grid-aside-wrapper">
+      <div class="hp-grid-aside-transform">
+        <mh-running-header class="hp-grid-aside">
+          <span class="running-header-stamp" slot="running-header-stamp">Contact me about</span>
+          <a class="running-header-token" href="mailto:matthhar12@gmail.com" slot="running-header-value">People
+            Management</a>
+        </mh-running-header>
+      </div>
+    </div>
+    <div class="hp-grid-nav">
+      <nav>
+        <ul>
+          <mh-nav-link route="route-work"><a href="">
+            <span>Work</span> <span class="hp-nav-number">01</span></a>
+          </mh-nav-link>
+          <mh-nav-link route="route-lab">
+            <a href=""><span>Lab</span> <span class="hp-nav-number">02</span></a>
+          </mh-nav-link>
+          <mh-nav-link route="route-profile">
+            <a href=""><span>Profile</span> <span class="hp-nav-number">03</span></a>
+          </mh-nav-link>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <mh-logo>
+    <div class="hp-logo-inner"></div>
+
+    <video autoplay class="hp-logo-video" loop muted>
+      <source src="/img/labs.webm" type="video/webm"/>
+    </video>
+  </mh-logo>
+
+</main>
+<!--region -->
+<template id="mh-date-ticker">
+  <slot name="year">2023</slot>
+</template>
+<template id="mh-running-header">
+  <style>
+    :host {
+      --visibility: hidden;
+      cursor: pointer;
+      position: absolute;
+    }
+
+    .envelope-wrapper {
+      position: relative;
+
+    }
+
+    .envelope-right {
+      opacity: 0;
+      visibility: var(--visibility);
+      position: absolute;
+      left: 50%;
+      transform: translate3d(-50%, 0%, 0);
+      top: -100%;
+      animation: volcano ease-in-out 750ms;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes volcano {
+      from {
+        transform: translate3d(-50%, 0%, 0);
+        opacity: 1;
+      }
+      to {
+        transform: translate3d(-50%, -175%, 0);
+        opacity: 0;
+      }
+    }
+  </style>
+  <slot name="running-header-stamp"></slot>
+  <span class="envelope-wrapper">
+
+      <slot name="running-header-value"></slot>
+      <div class="envelope-right">✉️</div>
+    </span>
+</template>
+<!--endregion-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="https://unpkg.com/mitt/dist/mitt.umd.js"></script>
+<script src="js/main.js" type="module"></script>
+</body>
+
+</html>
