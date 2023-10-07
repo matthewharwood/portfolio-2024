@@ -1,4 +1,4 @@
-import { Emitter } from '../state.js';
+import { State } from '../state.js';
 
 class MhNavLink extends HTMLElement {
   constructor() {
@@ -6,16 +6,21 @@ class MhNavLink extends HTMLElement {
   }
 
   enterHandler() {
-    Emitter.emit('ACTIVE_NAV_HOVER', {
-      activeNavHover: this.getAttribute('route'),
-    });
+    State.activeNavHover.value = this.getAttribute('route');
   }
 
-  leaveHandler() {}
+  leaveHandler() {
+    State.activeNavHover.value = '';
+  }
 
   connectedCallback() {
     this.addEventListener('mouseenter', this.enterHandler);
     this.addEventListener('mouseleave', this.leaveHandler);
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener('mouseenter', this.enterHandler);
+    this.removeEventListener('mouseleave', this.leaveHandler);
   }
 }
 

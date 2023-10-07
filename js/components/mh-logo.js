@@ -1,12 +1,30 @@
+import { effect } from '../../node_modules/@preact/signals-core/dist/signals-core.mjs';
+import { State } from '../state.js';
+
 class MhLogo extends HTMLElement {
   constructor() {
     super();
-    this.el = document.querySelector('.hp-logo-inner');
-    this.elVideo = document.querySelector('.hp-logo-video');
+    this.el = this.querySelector('.hp-logo-inner');
+    this.elVideo = this.querySelector('.hp-logo-video');
+    this.dispose = null;
     this._init();
   }
 
-  connectedCallback() {}
+  connectedCallback() {
+    this.dispose = effect(() => {
+      if (State.activeNavHover.value.length) {
+        this.el.classList.add('active');
+        this.elVideo.classList.add('active');
+      } else {
+        this.el.classList.remove('active');
+        this.elVideo.classList.remove('active');
+      }
+    });
+  }
+
+  disconnectedCallback() {
+    this.dispose();
+  }
 
   _init() {
     const isNotPortrait = window?.innerWidth / window?.innerHeight >= 1;
