@@ -8,8 +8,6 @@ customElements.define('mh-logo', MhLogo);
 customElements.define('mh-date-ticker', MhDateTicker);
 customElements.define('mh-nav-link', MhNavLink);
 
-function main() {
-  // const AnimateLogo = new MhLogo();
-}
+function main() {}
 
 main();

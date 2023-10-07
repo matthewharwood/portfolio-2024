@@ -1,4 +1,4 @@
-import { effect } from '../../node_modules/@preact/signals-core/dist/signals-core.mjs';
+import { effect } from '../vendor/signals-core.module.js';
 import { State } from '../state.js';
 
 class MhLogo extends HTMLElement {
