@@ -5,8 +5,15 @@ class MhLogo extends HTMLElement {
   constructor() {
     super();
     this.el = this.querySelector('.hp-logo-inner');
-    this.elVideo = this.querySelector('.hp-logo-video');
+    this.elVideo = [...this.querySelectorAll('.hp-logo-video')];
+    console.log(this.elVideo);
+    this.elVideoSrc = this.querySelector('.hp-logo-video-src');
     this.dispose = null;
+    this.videoList = {
+      'route-work': 'route-work',
+      'route-lab': 'route-lab',
+      'route-profile': 'route-profile',
+    };
     this._init();
   }
 
@@ -14,10 +21,22 @@ class MhLogo extends HTMLElement {
     this.dispose = effect(() => {
       if (State.activeNavHover.value.length) {
         this.el.classList.add('active');
-        this.elVideo.classList.add('active');
+        this.elVideo.map((vid) => {
+          console.log(
+            vid.dataset.route,
+            this.videoList[State.activeNavHover.value]
+          );
+          if (
+            vid.dataset.route === this.videoList[State.activeNavHover.value]
+          ) {
+            vid.classList.add('active');
+          }
+        });
       } else {
         this.el.classList.remove('active');
-        this.elVideo.classList.remove('active');
+        this.elVideo.map((vid) => {
+          vid.classList.remove('active');
+        });
       }
     });
   }
